@@ -1,8 +1,6 @@
 version: '3.8'
 
 services:
-
-  # Elasticsearch Docker Images: https://www.docker.elastic.co/
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
     container_name: elasticsearch
@@ -34,6 +32,37 @@ services:
     depends_on:
       - elasticsearch
 
+  apmserver:
+    container_name: apmserver
+    image: docker.elastic.co/apm/apm-server:7.8.0
+    command: --strict.perms=false
+    ports:
+      - 8200:8200
+      - 8201:8200
+    environment:
+      - apm-server.host=0.0.0.0
+      - setup.kibana.host=kibana:5601
+      - output.elasticsearch.hosts=["elasticsearch:9200"]
+      # volumes:
+      #   - ${PWD}/configs/apm-server.yml:/usr/share/apm-server/apm-server.yml
+    depends_on:
+      - elasticsearch
+      - kibana
+
+  database:
+    container_name: sqlserver
+    image: DBCatApi
+    build:
+      context: .
+      dockerfile: database/dockerfile
+    ports:
+        - "1433:1433"
+    volumes:
+        - mssqldata:/var/opt/mssql
+  
+        
 volumes:
   elasticsearch-data:
+    driver: local
+  mssqldata:
     driver: local
