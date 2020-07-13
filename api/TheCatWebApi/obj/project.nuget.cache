@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "fHVFkxOuAspiQA3UNAqveg3i/39ZJKMLHzT4lw89xU7A+4wxy3IIFydb7o6Bm+97MvBMsKtsSYfxUhnsR9jT3A==",
+  "success": true,
+  "projectFilePath": "C:\\temp\\Enviroment-CatApi\\api\\TheCatWebApi\\TheCatWebApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucas\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}
