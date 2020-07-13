@@ -1,0 +1,12 @@
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\bin\Debug\netcoreapp3.1\TheCatsRepository.deps.json
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\bin\Debug\netcoreapp3.1\TheCatsRepository.dll
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\bin\Debug\netcoreapp3.1\TheCatsRepository.pdb
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\bin\Debug\netcoreapp3.1\TheCatsDomain.dll
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\bin\Debug\netcoreapp3.1\TheCatsDomain.pdb
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\obj\Debug\netcoreapp3.1\TheCatsRepository.csprojAssemblyReference.cache
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\obj\Debug\netcoreapp3.1\TheCatsRepository.AssemblyInfoInputs.cache
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\obj\Debug\netcoreapp3.1\TheCatsRepository.AssemblyInfo.cs
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\obj\Debug\netcoreapp3.1\TheCatsRepository.csproj.CoreCompileInputs.cache
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\obj\Debug\netcoreapp3.1\TheCatsRepository.csproj.CopyComplete
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\obj\Debug\netcoreapp3.1\TheCatsRepository.dll
+C:\temp\Enviroment-CatApi\api\TheCatsRepository\obj\Debug\netcoreapp3.1\TheCatsRepository.pdb

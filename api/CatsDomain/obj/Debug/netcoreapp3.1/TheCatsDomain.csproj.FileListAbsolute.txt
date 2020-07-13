@@ -1,0 +1,9 @@
+C:\temp\Enviroment-CatApi\api\CatsDomain\bin\Debug\netcoreapp3.1\TheCatsDomain.deps.json
+C:\temp\Enviroment-CatApi\api\CatsDomain\bin\Debug\netcoreapp3.1\TheCatsDomain.dll
+C:\temp\Enviroment-CatApi\api\CatsDomain\bin\Debug\netcoreapp3.1\TheCatsDomain.pdb
+C:\temp\Enviroment-CatApi\api\CatsDomain\obj\Debug\netcoreapp3.1\TheCatsDomain.AssemblyInfoInputs.cache
+C:\temp\Enviroment-CatApi\api\CatsDomain\obj\Debug\netcoreapp3.1\TheCatsDomain.AssemblyInfo.cs
+C:\temp\Enviroment-CatApi\api\CatsDomain\obj\Debug\netcoreapp3.1\TheCatsDomain.dll
+C:\temp\Enviroment-CatApi\api\CatsDomain\obj\Debug\netcoreapp3.1\TheCatsDomain.pdb
+C:\temp\Enviroment-CatApi\api\CatsDomain\obj\Debug\netcoreapp3.1\TheCatsDomain.csprojAssemblyReference.cache
+C:\temp\Enviroment-CatApi\api\CatsDomain\obj\Debug\netcoreapp3.1\TheCatsDomain.csproj.CoreCompileInputs.cache

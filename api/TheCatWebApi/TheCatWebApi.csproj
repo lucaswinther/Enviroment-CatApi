@@ -8,7 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Data\appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CatsDomain\TheCatsDomain.csproj" />
+    <ProjectReference Include="..\TheCatsApplication\TheCatsApplication.csproj" />
+    <ProjectReference Include="..\TheCatsRepository\TheCatsRepository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Data\appsettings.json" />
   </ItemGroup>
 
 
