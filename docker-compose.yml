@@ -21,6 +21,8 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+    networks:
+      - elk
 
   kibana:
     container_name: kibana
@@ -31,6 +33,8 @@ services:
       - 5601:5601
     depends_on:
       - elasticsearch
+    networks:
+      - elk
 
   apmserver:
     container_name: apmserver
@@ -43,15 +47,15 @@ services:
       - apm-server.host=0.0.0.0
       - setup.kibana.host=kibana:5601
       - output.elasticsearch.hosts=["elasticsearch:9200"]
-      # volumes:
-      #   - ${PWD}/configs/apm-server.yml:/usr/share/apm-server/apm-server.yml
     depends_on:
       - elasticsearch
       - kibana
+    networks:
+      - elk
 
   database:
     container_name: sqlserver
-    image: DBCatApi
+    image: sqlserver
     build:
       context: .
       dockerfile: database/dockerfile
@@ -59,10 +63,42 @@ services:
         - "1433:1433"
     volumes:
         - mssqldata:/var/opt/mssql
-  
+    networks:
+      - elk
+
+  metricbeat:
+    container_name: metricbeat
+    image: metricbeat
+    restart: always
+    build:
+      context: .
+      dockerfile: monitoring/dockerfile
+    user: root
+    volumes:
+      - /proc:/hostfs/proc:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /:/hostfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - metricbeat:/usr/share/metricbeat/data
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch:9200
+      - KIBANA_HOST=kibana:5601
+    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
+    networks:
+      - elk            
+    depends_on:
+      - database
+      - elasticsearch
+      - kibana      
+      - apmserver
+
+networks:
+  elk:
+    driver: bridge
         
 volumes:
   elasticsearch-data:
     driver: local
   mssqldata:
     driver: local
+  metricbeat:

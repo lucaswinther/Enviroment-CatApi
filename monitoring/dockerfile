@@ -1,0 +1,5 @@
+FROM docker.elastic.co/beats/metricbeat:7.8.0
+ENV ELASTICSEARCH_HOST=elasticsearch:9200
+ENV KIBANA_HOST=kibana:5601
+COPY ./monitoring/metricbeat.yml ./metricbeat.yml
+RUN metricbeat modules enable elasticsearch mssql kibana
