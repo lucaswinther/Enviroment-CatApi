@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "0b1da9f7-2288-401a-8281-cc191ad6d48d",
+		"name": "TheCatsWebApi",
+		"description": "Collection to use The Cats Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LoadCats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/v1/CatsBreeds/loadcats",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"v1",
+						"CatsBreeds",
+						"loadcats"
+					]
+				},
+				"description": "To load Database"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllBreeds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/v1/CatsBreeds/getallbreeds",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"v1",
+						"CatsBreeds",
+						"getallbreeds"
+					]
+				},
+				"description": "To load Database"
+			},
+			"response": []
+		},
+		{
+			"name": "GetBreeds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/v1/CatsBreeds/getbreeds?IdOrName=abys",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"v1",
+						"CatsBreeds",
+						"getbreeds"
+					],
+					"query": [
+						{
+							"key": "IdOrName",
+							"value": "abys"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBreedsByTemperament",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/v1/CatsBreeds/getbreedsbytemperament?temperament=Intelligent",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"v1",
+						"CatsBreeds",
+						"getbreedsbytemperament"
+					],
+					"query": [
+						{
+							"key": "temperament",
+							"value": "Intelligent"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetGmageUrlByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/v1/CatsBreeds/getimageurlbycategory?category=4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"v1",
+						"CatsBreeds",
+						"getimageurlbycategory"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBreedsByOrigin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44317/api/v1/CatsBreeds/getbreedsbyorigin?origin=United%20States",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44317",
+					"path": [
+						"api",
+						"v1",
+						"CatsBreeds",
+						"getbreedsbyorigin"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "United%20States"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
