@@ -24,6 +24,7 @@ namespace TheCatsApplication
             this.appSettings = appConfiguration.GetAppSettings();
             this.theCatAPI = theCatAPI;
             this.breedsRepository = breedsRepository;
+            this.categoryRepository = categoryRepository;
             this.imageUrlRepository = imageUrlRepository;
         }
         public async Task CapureAllBreedsWithImages()

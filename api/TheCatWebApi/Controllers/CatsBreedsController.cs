@@ -42,14 +42,20 @@ namespace TheCatWebApi.Controllers
             try
             {
                 stopWatch.Restart();
-                stopWatch.Start();               
-                
+                stopWatch.Start();
+                logger.LogInformation((int)LogLevel.Information, $"Starting Load Database ;{stopWatch.ElapsedMilliseconds} ms");
                 await commandCapture.CapureAllBreedsWithImages();
-                await commandCapture.CaptureImagesByCategory();
-                
                 stopWatch.Stop();
+                logger.LogInformation((int)LogLevel.Information, $"Finish Load Database ;{stopWatch.ElapsedMilliseconds} ms");
 
-                return Ok($"Finish load data in {stopWatch.ElapsedMilliseconds} ms");
+                stopWatch.Start();
+                logger.LogInformation((int)LogLevel.Information, $"Starting Load Images By Category ;{stopWatch.ElapsedMilliseconds} ms");
+                await commandCapture.CaptureImagesByCategory();
+                stopWatch.Stop();
+                logger.LogInformation((int)LogLevel.Information, $"Finish Load Images By Category ;{stopWatch.ElapsedMilliseconds} ms");
+                
+
+                return Ok($"Finish load data");
             }
             catch (Exception ex)
             {
