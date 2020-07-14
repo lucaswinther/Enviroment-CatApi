@@ -22,7 +22,8 @@ services:
       - 9200:9200
       - 9300:9300
     networks:
-      - elk
+            testing_net:
+                ipv4_address: 172.28.1.2    
 
   kibana:
     container_name: kibana
@@ -34,7 +35,8 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      - elk
+            testing_net:
+                ipv4_address: 172.28.1.3
 
   apmserver:
     container_name: apmserver
@@ -51,20 +53,8 @@ services:
       - elasticsearch
       - kibana
     networks:
-      - elk
-
-  database:
-    container_name: sqlserver
-    image: sqlserver
-    build:
-      context: .
-      dockerfile: database/dockerfile
-    ports:
-        - "1433:1433"
-    volumes:
-        - mssqldata:/var/opt/mssql
-    networks:
-      - elk
+            testing_net:
+                ipv4_address: 172.28.1.4
 
   metricbeat:
     container_name: metricbeat
@@ -85,7 +75,39 @@ services:
       - KIBANA_HOST=kibana:5601
     command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
     networks:
-      - elk            
+            testing_net:
+                ipv4_address: 172.28.1.5
+    depends_on:
+      - database
+      - elasticsearch
+      - kibana      
+      - apmserver
+
+  database:
+    container_name: sqlserver
+    image: sqlserver
+    build:
+      context: .
+      dockerfile: database/dockerfile
+    ports:
+        - "1433:1433"
+    volumes:
+        - mssqldata:/var/opt/mssql
+    networks:
+            testing_net:
+                ipv4_address: 172.28.1.6
+
+  api:
+    container_name: catwebapi
+    image: catwebapi
+    build:
+      context: .
+      dockerfile: api/dockerfile
+    ports:
+        - "80:80"      
+    networks:
+            testing_net:
+                ipv4_address: 172.28.1.7
     depends_on:
       - database
       - elasticsearch
@@ -93,8 +115,11 @@ services:
       - apmserver
 
 networks:
-  elk:
-    driver: bridge
+    testing_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16
         
 volumes:
   elasticsearch-data:

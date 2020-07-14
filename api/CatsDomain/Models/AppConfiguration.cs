@@ -11,7 +11,7 @@ namespace TheCatsDomain.Models
 	{
 		public AppSettings GetAppSettings()
 		{
-			string CONFIG_FILE_PATH = Path.Combine(Environment.CurrentDirectory, "Data", "appsettings.json");
+			string CONFIG_FILE_PATH = Path.Combine(Environment.CurrentDirectory, ".", "appsettings.json");
 			return JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(CONFIG_FILE_PATH));
 		}
 	}

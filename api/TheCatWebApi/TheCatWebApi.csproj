@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Data\appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Elastic.Apm.NetCoreAll" Version="1.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
@@ -21,10 +17,6 @@
     <ProjectReference Include="..\CatsDomain\TheCatsDomain.csproj" />
     <ProjectReference Include="..\TheCatsApplication\TheCatsApplication.csproj" />
     <ProjectReference Include="..\TheCatsRepository\TheCatsRepository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Data\appsettings.json" />
   </ItemGroup>
 
 
