@@ -28,12 +28,9 @@ namespace TheCatsApplication
         }
         public async Task CapureAllBreedsWithImages()
         {
-            // Captura uma lista de Breeds a partir da API TheCatAPI
             var breedsList = await theCatAPI.GetBreeds();
-            // Para cada Breeds encontrado, armazena na base de dados
             foreach (var breeds in breedsList)
             {
-                // Verifica se Breeds já existe na base de dados, se não existir, armazena
                 var breedsInDB = await breedsRepository.GetBreeds(breeds.Id);
                 if (breedsInDB == null)
                 {
@@ -43,16 +40,11 @@ namespace TheCatsApplication
                     breedsInDB.SetDescription(breeds.Description);
                     await breedsRepository.AddBreeds(breedsInDB);
                 }
-                // Encontra as imagens do registro Breeds atual, caso exista, armazena as imagens na base de dados
                 var imagesList = await theCatAPI.GetImagesByBreeds(breeds.Id);
                 if (imagesList != null && imagesList.Count > 0)
                 {
                     foreach (var image in imagesList)
                     {
-                        // Verifica se Image existe. Se não, cria o objeto
-                        // A variável: imageExists, é para fazer o tratamento se Add ou Update
-                        // pois chamando este métodos, a tabela associativa será gravada, caso
-                        // a imagem não tenha existido anteriormente.
                         var imageInDB = await imageUrlRepository.GetImageUrl(image.Id);
                         var imageExists = imageInDB != null;
                         if (!imageExists)
@@ -72,30 +64,21 @@ namespace TheCatsApplication
         }
         public async Task CaptureImagesByCategory()
         {
-            // Captura uma lista de Category da API TheCatAPI, em seguida filtra a lista
-            // conforme os nomes definidos no AppSettings
             var categoryList = await theCatAPI.GetCategories();
             categoryList = categoryList.Where(x => appSettings.TheCatSettings.ImageCategoryFilter.Contains(x.Name)).ToList();
-            // Para cada Category encontrado, armazena na base de dados
             foreach (var category in categoryList)
             {
-                // Verifica se Category já existe na base de dados, se não existir, armazena
                 var categoryInDB = await categoryRepository.GetCategory(category.Id);
                 if (categoryInDB == null)
                 {
                     categoryInDB = new Category(category.Id, category.Name);
                     await categoryRepository.AddCategory(categoryInDB);
                 }
-                // Econtra as imagens do registro Breeds atual, caso exista, armazena as imagens na base de dados
                 var imagesList = await theCatAPI.GetImagesByCategory(category.Id, 3);
                 if (imagesList != null && imagesList.Count > 0)
                 {
                     foreach (var image in imagesList)
                     {
-                        // Verifica se Image existe. Se não, cria o objeto
-                        // A variável: imageExists, é para fazer o tratamento se Add ou Update
-                        // pois chamando este métodos, a tabela associativa será gravada, caso
-                        // a imagem não tenha existido anteriormente.
                         var imageInDB = await imageUrlRepository.GetImageUrl(image.Id);
                         var imageExists = imageInDB != null;
                         if (!imageExists)

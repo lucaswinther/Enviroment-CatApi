@@ -35,7 +35,6 @@ namespace TheCatWebApi.Controllers
 			this.env = env;
 		}
 
-
         [HttpGet]
         [Route("loadcats")]
         public async Task<IActionResult> LoadCats()

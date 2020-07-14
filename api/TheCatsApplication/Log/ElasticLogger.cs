@@ -14,13 +14,6 @@ namespace TheCatsApplication.Log
         readonly string _categoryName;
         readonly int maxLength = 8096;
 
-        /// <summary>
-        /// Construtor implementa Filtro, para determinar qual o nível de LOG será gerado
-        /// Também recebe a Interface: TIntegration, responsável em enviar as informações para o ELK
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <param name="elkIntegration"></param>
-        /// <param name="categoryName"></param>
         public ElasticLogger(Func<string, LogLevel, bool> filter, TIntegration elkIntegration, string categoryName)
         {
             _filter = filter;
@@ -32,15 +25,6 @@ namespace TheCatsApplication.Log
 
         public bool IsEnabled(LogLevel logLevel) => (_filter == null || _filter(_categoryName, logLevel));
 
-        /// <summary>
-        /// Método responsável em setar as informações e enviar para o ELK
-        /// </summary>
-        /// <typeparam name="TState"></typeparam>
-        /// <param name="logLevel"></param>
-        /// <param name="eventId"></param>
-        /// <param name="state"></param>
-        /// <param name="exception"></param>
-        /// <param name="formatter"></param>
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel))
@@ -75,8 +59,6 @@ namespace TheCatsApplication.Log
             logEvent.SetLogEventId(eventId.Id);
             logEvent.SetDescription(message);
 
-            // Este método verifica se o índice existe, se não, cria.
-            // Isto garante que não irá gerar erro ao incluir uma informação no ELK
             _elkIntegration.CreateIndex();
             _elkIntegration.AddDoc(logEvent);
         }
