@@ -12,27 +12,16 @@ namespace TheCatsRepository.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        // Comandos base para serem concatenados
         const string queryBase =
             @"SELECT CategoryId, Name
               FROM category";
 
         readonly TheCatDBContext theCatContext;
 
-        /// <summary>
-        /// Construtor da classe: Espera um DBContext responsável por acessar a base e que implementa os
-        /// comandos de banco de dados
-        /// </summary>
-        /// <param name="theCatContext"></param>
         public CategoryRepository(TheCatDBContext theCatContext)
         {
             this.theCatContext = theCatContext;
         }
-
-        /// <summary>
-        /// Método traz todas as as informações da tabela Category
-        /// </summary>
-        /// <returns></returns>
         public async Task<ICollection<Category>> GetAllCategory()
         {
             using (var conn = theCatContext.GetConnection)
@@ -41,12 +30,6 @@ namespace TheCatsRepository.Repositories
                 return result.ToList();
             }
         }
-
-        /// <summary>
-        /// Método traz a informação da tabela Category conforme o Id informado
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public async Task<Category> GetCategory(int id)
         {
             using (var conn = theCatContext.GetConnection)
@@ -55,12 +38,6 @@ namespace TheCatsRepository.Repositories
                 return result.FirstOrDefault();
             }
         }
-
-        /// <summary>
-        /// Método adiciona um registro na tabela Category, caso o objeto category passado seja válido
-        /// </summary>
-        /// <param name="category"></param>
-        /// <returns></returns>
         public async Task AddCategory(Category category)
         {
             if (!category.IsValid())
@@ -78,12 +55,6 @@ namespace TheCatsRepository.Repositories
                 }
             }
         }
-
-        /// <summary>
-        /// Método atualiza um registro na tabela Category, caso o objeto category passado seja válido
-        /// </summary>
-        /// <param name="category"></param>
-        /// <returns></returns>
         public async Task UpdateCategory(Category category)
         {
             if (!category.IsValid())

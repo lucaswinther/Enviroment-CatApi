@@ -8,41 +8,24 @@ using TheCatsDomain.Interfaces.Application;
 using TheCatsDomain.Interfaces.Repository;
 using TheCatsDomain.Models;
 using TheCatsRepository.Repositories;
+using System.Collections.Generic;
 
 namespace TheCatsApplication
 {
     public class CommandCapture : ICommandCapture
     {
-        // Fields que serão recebidos como parâmetro no construtor (Inversão de Controle)
-
         readonly ITheCatWebAPI theCatAPI;
         readonly ICatBreedsRepositories breedsRepository;
         readonly ICategoryRepository categoryRepository;
-        readonly IImageUrlRepositories imageUrlRepository;
+        readonly IImageUrlRepositories imageUrlRepository;        
         readonly AppSettings appSettings;
-
-        /// <summary>
-        /// Construtor recebe como parâmetro a instância das classes de AppSettings, Integração e Repositórios
-        /// </summary>
-        /// <param name="appSettings"></param>
-        /// <param name="theCatAPI"></param>
-        /// <param name="breedsRepository"></param>
-        /// <param name="categoryRepository"></param>
-        /// <param name="imageUrlRepository"></param>
         public CommandCapture(IAppConfiguration appConfiguration, ITheCatWebAPI theCatAPI, ICatBreedsRepositories breedsRepository, ICategoryRepository categoryRepository, IImageUrlRepositories imageUrlRepository)
         {
             this.appSettings = appConfiguration.GetAppSettings();
             this.theCatAPI = theCatAPI;
             this.breedsRepository = breedsRepository;
-            this.categoryRepository = categoryRepository;
             this.imageUrlRepository = imageUrlRepository;
         }
-
-        /// <summary>
-        /// Método captura a lista Breeds da API TheCatAPI e armazena na base de dados
-        /// juntamente com as imagens encontradas para cada Breeds
-        /// </summary>
-        /// <returns></returns>
         public async Task CapureAllBreedsWithImages()
         {
             // Captura uma lista de Breeds a partir da API TheCatAPI
@@ -60,7 +43,7 @@ namespace TheCatsApplication
                     breedsInDB.SetDescription(breeds.Description);
                     await breedsRepository.AddBreeds(breedsInDB);
                 }
-                // Econtra as imagens do registro Breeds atual, caso exista, armazena as imagens na base de dados
+                // Encontra as imagens do registro Breeds atual, caso exista, armazena as imagens na base de dados
                 var imagesList = await theCatAPI.GetImagesByBreeds(breeds.Id);
                 if (imagesList != null && imagesList.Count > 0)
                 {
@@ -87,12 +70,6 @@ namespace TheCatsApplication
                 }
             }
         }
-
-        /// <summary>
-        /// Método captura lista de Category, conforme os nomes definicos em AppSettings
-        /// e a seguir, encontra 3 Image para cada e armazena na base de dados
-        /// </summary>
-        /// <returns></returns>
         public async Task CaptureImagesByCategory()
         {
             // Captura uma lista de Category da API TheCatAPI, em seguida filtra a lista
@@ -136,5 +113,7 @@ namespace TheCatsApplication
                 }
             }
         }
+
+
     }
 }

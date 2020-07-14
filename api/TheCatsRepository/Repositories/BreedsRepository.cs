@@ -11,7 +11,6 @@ namespace TheCatsRepository.Repositories
 {
     public class BreedsRepository : ICatBreedsRepositories
     {
-        // Comandos base para serem concatenados
         const string queryBase =
             @"SELECT BreedsId, Name, Origin, Temperament, Description
               FROM breeds";
@@ -19,21 +18,12 @@ namespace TheCatsRepository.Repositories
         readonly TheCatDBContext theCatContext;
         readonly IImageUrlRepositories imageUrlRepository;
 
-        /// <summary>
-        /// Construtor da classe: Espera um DBContext responsável por acessar a base e que implementa os
-        /// comandos de banco de dados
-        /// </summary>
-        /// <param name="theCatContext"></param>
         public BreedsRepository(TheCatDBContext theCatContext, IImageUrlRepositories imageUrlRepository)
         {
             this.theCatContext = theCatContext;
             this.imageUrlRepository = imageUrlRepository;
         }
 
-        /// <summary>
-        /// Método traz todas as as informações da tabela Breeds
-        /// </summary>
-        /// <returns></returns>
         public async Task<ICollection<Breeds>> GetAllBreeds(bool includeImages = false)
         {
             using (var conn = theCatContext.GetConnection)
@@ -44,12 +34,6 @@ namespace TheCatsRepository.Repositories
                 return result.ToList();
             }
         }
-
-        /// <summary>
-        /// Método traz a informação da tabela Breeds conforme o Id informado
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public async Task<Breeds> GetBreeds(string idOrName, bool includeImages = false)
         {
             using (var conn = theCatContext.GetConnection)
@@ -60,12 +44,6 @@ namespace TheCatsRepository.Repositories
                 return result.FirstOrDefault();
             }
         }
-
-        /// <summary>
-        /// Método traz todas as informações da tabela Breed que contenham o Temperamento passado
-        /// </summary>
-        /// <param name="temperament"></param>
-        /// <returns></returns>
         public async Task<ICollection<Breeds>> GetBreedsByTemperament(string temperament, bool includeImages = false)
         {
             using (var conn = theCatContext.GetConnection)
@@ -76,12 +54,6 @@ namespace TheCatsRepository.Repositories
                 return result.ToList();
             }
         }
-
-        /// <summary>
-        /// Método traz todas as informações da tabela Breed que contenham a Origem passada
-        /// </summary>
-        /// <param name="origin"></param>
-        /// <returns></returns>
         public async Task<ICollection<Breeds>> GetBreedsByOrigin(string origin, bool includeImages = false)
         {
             using (var conn = theCatContext.GetConnection)
@@ -92,12 +64,6 @@ namespace TheCatsRepository.Repositories
                 return result.ToList();
             }
         }
-
-        /// <summary>
-        /// Método adiciona um registro na tabela Breeds, caso o objeto breeds passado seja válido
-        /// </summary>
-        /// <param name="breeds"></param>
-        /// <returns></returns>
         public async Task AddBreeds(Breeds breeds)
         {
             if (!breeds.IsValid())
@@ -115,12 +81,6 @@ namespace TheCatsRepository.Repositories
                 }
             }
         }
-
-        /// <summary>
-        /// Método atualiza um registro na tabela Breeds, caso o objeto breeds passado seja válido
-        /// </summary>
-        /// <param name="breeds"></param>
-        /// <returns></returns>
         public async Task UpdateBreeds(Breeds breeds)
         {
             if (!breeds.IsValid())
@@ -140,13 +100,11 @@ namespace TheCatsRepository.Repositories
                 }
             }
         }
-
         async Task FillImageInBreedsObject(ICollection<Breeds> listBreeds)
         {
             foreach (var breeds in listBreeds)
                 await FillImageInBreedsObject(breeds);
         }
-
         async Task FillImageInBreedsObject(Breeds breeds)
         {
             var result = await imageUrlRepository.GetImageUrlByBreeds(breeds.BreedsId);

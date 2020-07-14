@@ -1,8 +1,3 @@
-/*
-    Script para criação das tabelas em um banco de dados SQL Server
-*/
-
--- Caso o database não exista, cria
 
 IF NOT Exists(
     SELECT Name
@@ -16,9 +11,6 @@ GO
 
 USE thecatdb
 GO
-
--- Caso as tabelas já existam, exclui
---------------------------------------------------------------------
 
 IF OBJECT_ID('ImageUrlCategory', 'u') IS NOT NULL BEGIN
   DROP TABLE ImageUrlCategory
@@ -49,9 +41,6 @@ IF OBJECT_ID('LogEvent', 'u') IS NOT NULL BEGIN
   DROP TABLE LogEvent
 END
 GO
-
--- Cria as tabelas necessárias
---------------------------------------------------------------------
 
 CREATE TABLE Breeds
 (
@@ -140,26 +129,4 @@ ALTER TABLE ImageUrlCategory ADD
     CONSTRAINT FK_ImageUrlCategory_Category
     FOREIGN KEY (CategoryId)
     REFERENCES Category (CategoryId)
-GO
-
-CREATE TABLE LogEvent
-(
-    LogEventId INT NOT NULL IDENTITY(1,1),
-    EventDate DATETIME NOT NULL,
-    EventTypeId INT NOT NULL,
-    EventType VARCHAR(60) NOT NULL,
-    MethodName VARCHAR(255) NOT NULL,
-    ExecutionTime BIGINT NOT NULL,
-    ExecutionTimeFrmt VARCHAR(12) NOT NULL,
-    Description VARCHAR(1024)
-)
-GO
-
-ALTER TABLE LogEvent ADD
-    CONSTRAINT PK_LogEvent
-    PRIMARY KEY CLUSTERED (LogEventId)
-GO
-
-CREATE INDEX IDX_AK_LogEvent_EventType ON LogEvent
-    (EventDate, EventType)
 GO
