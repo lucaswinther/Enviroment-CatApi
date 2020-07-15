@@ -13,10 +13,25 @@ docker-compose up
 
 When you run docker-compose up, all the enviroment will be created.
 
+* Cat Web Api
+* Elastic Search
+* Kibana
+* Metric beat
+* Sql server
+
+![gif](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/enviroment.png)
+
+
+![gif](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/compose-up.gif)
+
+
 
 ## Know possibles issues
 Sometimes, when you run docker compose, the database has is not created automatically.
 The turnaround is, you remove the container name sqlserver, and run it docker-compose again.
+
+![gif](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/compose-up2.gif)
+
 
 ## API
 You can use Swagger to check and use endpoints 
