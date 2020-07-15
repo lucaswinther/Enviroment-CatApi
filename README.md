@@ -11,25 +11,32 @@ This aplication is utilized to get data from https://thecatapi.com/.
 docker-compose up
 ```
 
+When you run docker-compose up, all the enviroment will be created.
+
+
+## Know possibles issues
+Sometimes, when you run docker compose, the database has is not created automatically.
+The turnaround is, you remove the container name sqlserver, and run it docker-compose again.
+
 ## API
 You can use Swagger to check and use endpoints 
 
 http://localhost/swagger
 
-![Postman](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/swagger.png)
+![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/swagger.png)
 
 ## Postman
 You can use the Postman to testing the endpoints
 
-![Postman](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/Postman.png)
+![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/Postman.png)
 
-![Postman](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/Postman2.png)
+![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/Postman2.png)
 
 
 ## Metrics
 Using Elastic APM and Kibana, you can see logs of aplication and metrics about response time and errors
 
-![Postman](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiMonitoring.png)
+![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiMonitoring.png)
 
 And you can se informations about use of CPU and memory
 
@@ -39,4 +46,4 @@ And you can se informations about use of CPU and memory
 Automaticly, the aplication will creade an index in ElasticSearch.
 You can check then using discover tab in Kibana.
 
-![Postman](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiLogs.png)
+![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiLogs.png)
