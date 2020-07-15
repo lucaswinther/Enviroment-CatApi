@@ -57,6 +57,27 @@ http://localhost/swagger
 
 ![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/swagger.png)
 
+## Endpoints
+
+#### /api/v1/CatsBreeds/loadcats
+Endpoint to load cats database
+
+#### /api/v1/CatsBreeds/getallbreeds
+Endpoint to get all breeads in database
+
+#### /api/v1/CatsBreeds/getbreeds?IdOrName=
+Endpoint to get a specific Breed using Id or name
+
+#### /api/v1/CatsBreeds/getbreedsbytemperament?temperament=
+Endpoint to get a specific Breed using temperament
+
+#### /v1/CatsBreeds/getimageurlbycategory?category=
+Endpoint to get a specific image using a category
+
+#### /api/v1/CatsBreeds/getbreedsbyorigin?origin=
+Endpoint to get a specific image using a origin
+
+
 ## Postman
 You can use the Postman to testing the endpoints
 
