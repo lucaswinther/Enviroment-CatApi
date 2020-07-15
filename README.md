@@ -6,9 +6,9 @@ This aplication is utilized to get data from https://thecatapi.com/.
 ## Requirements
 
 * Git Bash (download repository) - https://git-scm.com/download/win
-* Docker for Windows Release 19
+* Docker for Windows Release 19 - https://docs.docker.com/docker-for-windows/install/
 * Visual Code - https://code.visualstudio.com/download (optional)
-* SQL Management Studio SSMS - https://docs.microsoft.com/pt-br/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
+* SQL Management Studio SSMS - https://docs.microsoft.com/pt-br/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15 (optional)
 * PostMan - https://www.postman.com/downloads/ (optional)
 
 ## How to Use
