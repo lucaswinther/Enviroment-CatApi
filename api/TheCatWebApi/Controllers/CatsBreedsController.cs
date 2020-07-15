@@ -136,7 +136,7 @@ namespace TheCatWebApi.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError((int)LogLevel.Error, $"Erro ao buscar raça por temperamento {temperament}: {ex.Message}");
+                logger.LogError((int)LogLevel.Error, $"Error to get breeads using temperament {temperament}: {ex.Message}");
                 return BadRequest();
             }
         }
@@ -162,7 +162,7 @@ namespace TheCatWebApi.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError((int)LogLevel.Error, $"Erro ao buscar raça por temperamento {category}: {ex.Message}");
+                logger.LogError((int)LogLevel.Error, $"Error to get Images using category {category}: {ex.Message}");
                 return BadRequest();
             }
         }
@@ -188,7 +188,7 @@ namespace TheCatWebApi.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError((int)LogLevel.Error, $"Erro ao buscar raça por origem {origin}: {ex.Message}");
+                logger.LogError((int)LogLevel.Error, $"Error to get breeads using origin {origin}: {ex.Message}");
                 return BadRequest();
             }
         }
