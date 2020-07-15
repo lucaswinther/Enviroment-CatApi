@@ -17,6 +17,7 @@ When you run docker-compose up, all the enviroment will be created.
 * Elastic Search
 * Kibana
 * Metric beat
+* APM Server
 * Sql server
 
 ![gif](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/enviroment.png)
