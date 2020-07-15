@@ -12,12 +12,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:44317/api/v1/CatsBreeds/loadcats",
-					"protocol": "https",
+					"raw": "http://localhost/api/v1/CatsBreeds/loadcats",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "44317",
 					"path": [
 						"api",
 						"v1",
@@ -35,12 +34,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:44317/api/v1/CatsBreeds/getallbreeds",
-					"protocol": "https",
+					"raw": "http://localhost/api/v1/CatsBreeds/getallbreeds",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "44317",
 					"path": [
 						"api",
 						"v1",
@@ -58,12 +56,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:44317/api/v1/CatsBreeds/getbreeds?IdOrName=abys",
-					"protocol": "https",
+					"raw": "http://localhost/api/v1/CatsBreeds/getbreeds?IdOrName=abys",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "44317",
 					"path": [
 						"api",
 						"v1",
@@ -86,12 +83,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:44317/api/v1/CatsBreeds/getbreedsbytemperament?temperament=Intelligent",
-					"protocol": "https",
+					"raw": "http://localhost/api/v1/CatsBreeds/getbreedsbytemperament?temperament=Intelligent",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "44317",
 					"path": [
 						"api",
 						"v1",
@@ -114,12 +110,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:44317/api/v1/CatsBreeds/getimageurlbycategory?category=4",
-					"protocol": "https",
+					"raw": "http://localhost/api/v1/CatsBreeds/getimageurlbycategory?category=4",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "44317",
 					"path": [
 						"api",
 						"v1",
@@ -142,12 +137,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:44317/api/v1/CatsBreeds/getbreedsbyorigin?origin=United%20States",
-					"protocol": "https",
+					"raw": "http://localhost/api/v1/CatsBreeds/getbreedsbyorigin?origin=United%20States",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "44317",
 					"path": [
 						"api",
 						"v1",
