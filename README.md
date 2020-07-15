@@ -53,7 +53,7 @@ docker-compose up
 ## API
 You can use Swagger to check and use endpoints 
 
-http://localhost/swagger
+http://localhost:8085/swagger
 
 ![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/swagger.png)
 
@@ -89,14 +89,19 @@ You can use the Postman to testing the endpoints
 ## Metrics
 Using Elastic APM and Kibana, you can see logs of aplication and metrics about response time and errors
 
+### http://localhost:5601/app/apm 
+
 ![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiMonitoring.png)
 
 And you can se informations about use of CPU and memory
 
 ![Postman](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiMonitoring2.png)
 
+
 ## Logs
 Automaticly, the aplication will creade an index in ElasticSearch.
 You can check then using discover tab in Kibana.
+
+### http://localhost:5601/app/kibana#/discover
 
 ![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiLogs.png)

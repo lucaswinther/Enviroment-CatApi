@@ -8,10 +8,10 @@ metricbeat.max_start_delay: 10s
 setup.dashboards.enabled: true
 
 output.elasticsearch:
-  hosts: ["elasticsearch:9200"]
+  hosts: ["172.28.1.2:9200"]
 
 setup.kibana:
-  host: "kibana:5601"
+  host: "172.28.1.3:5601"
 
 metricbeat.modules:
 
@@ -34,11 +34,11 @@ metricbeat.modules:
     - shard
     - ml_job
   period: 10s
-  hosts: ["http://localhost:9200"]
+  hosts: ["http://172.28.1.2:9200"]
 
 - module: kibana
   metricsets: ["status"]
   period: 10s
-  hosts: ["localhost:5601"]
+  hosts: ["172.28.1.3:5601"]
   basepath: ""
   enabled: true

@@ -105,7 +105,7 @@ services:
       context: .
       dockerfile: api/dockerfile
     ports:
-        - "80:80"      
+        - "8085:80"      
     networks:
             network_cats:
                 ipv4_address: 172.28.1.7
