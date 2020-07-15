@@ -23,18 +23,21 @@ namespace TheCatWebApi.Controllers
         readonly IImageUrlRepositories imageUrlRepositories;
         readonly ICommandCapture commandCapture;
         readonly ILogger<CatsBreedsController> logger;
-		readonly IWebHostEnvironment env;
+		
 
-		public CatsBreedsController(ICatBreedsRepositories breedsRepository, IImageUrlRepositories imageUrlRepositories, ICommandCapture commandCapture, ILogger<CatsBreedsController> logger, IWebHostEnvironment env)
+		public CatsBreedsController(ICatBreedsRepositories breedsRepository, IImageUrlRepositories imageUrlRepositories, ICommandCapture commandCapture, ILogger<CatsBreedsController> logger)
 		{
 			stopWatch = new Stopwatch();
 			this.breedsRepository = breedsRepository;
             this.imageUrlRepositories = imageUrlRepositories;
             this.commandCapture = commandCapture;
-			this.logger = logger;
-			this.env = env;
+			this.logger = logger;			
 		}
 
+        /// <summary>
+        /// Endpoint to load cats database
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("loadcats")]
         public async Task<IActionResult> LoadCats()
@@ -45,17 +48,15 @@ namespace TheCatWebApi.Controllers
                 stopWatch.Start();
                 logger.LogInformation((int)LogLevel.Information, $"Starting Load Database ;{stopWatch.ElapsedMilliseconds} ms");
                 await commandCapture.CapureAllBreedsWithImages();
-                stopWatch.Stop();
                 logger.LogInformation((int)LogLevel.Information, $"Finish Load Database ;{stopWatch.ElapsedMilliseconds} ms");
-
-                stopWatch.Start();
-                logger.LogInformation((int)LogLevel.Information, $"Starting Load Images By Category ;{stopWatch.ElapsedMilliseconds} ms");
-                await commandCapture.CaptureImagesByCategory();
-                stopWatch.Stop();
-                logger.LogInformation((int)LogLevel.Information, $"Finish Load Images By Category ;{stopWatch.ElapsedMilliseconds} ms");
                 
+                logger.LogInformation((int)LogLevel.Information, $"Starting Load Images By Category ;{stopWatch.ElapsedMilliseconds} ms");
+                await commandCapture.CaptureImagesByCategory();                
+                logger.LogInformation((int)LogLevel.Information, $"Finish Load Images By Category ;{stopWatch.ElapsedMilliseconds} ms");
+                stopWatch.Stop();
 
-                return Ok($"Finish load data");
+
+                return Ok($"Finish load data in {stopWatch.ElapsedMilliseconds} ms");
             }
             catch (Exception ex)
             {
@@ -64,6 +65,10 @@ namespace TheCatWebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint to get all breeads in database
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
 		[Route("getallbreeds")]
 		public async Task<IActionResult> GetAllBreeds()
@@ -74,18 +79,21 @@ namespace TheCatWebApi.Controllers
 				stopWatch.Start();
 				var result = await breedsRepository.GetAllBreeds(true);
 				stopWatch.Stop();
-				logger.LogInformation((int)LogLevel.Information, $"Encontrados {result.Count} raças;{stopWatch.ElapsedMilliseconds}");
-				if (env.IsDevelopment())
-					logger.LogDebug((int)LogLevel.Debug, $"Encontrados {result.Count} raças;{stopWatch.ElapsedMilliseconds}");
+				logger.LogInformation((int)LogLevel.Information, $"Find a total of {result.Count} breeds in {stopWatch.ElapsedMilliseconds} ms");
 				return Ok(result);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError((int)LogLevel.Error, $"Erro ao buscar raças: {ex.Message}");
+				logger.LogError((int)LogLevel.Error, $"Fail to get all breeds: {ex.Message}");
 				return BadRequest();
 			}
 		}
 
+        /// <summary>
+        /// Endpoint to get a specific Breed using Id or name
+        /// </summary>
+        /// <param name="IdOrName"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("getbreeds")]
         public async Task<IActionResult> GetBreeds(string IdOrName)
@@ -96,19 +104,22 @@ namespace TheCatWebApi.Controllers
                 stopWatch.Start();
                 var result = await breedsRepository.GetBreeds(IdOrName, true);
                 stopWatch.Stop();
-                var msg = result != null ? $"Raça {result?.Name} encontrada" : $"Raça pesquisada por: {IdOrName} não encontrada";
+                var msg = result != null ? $"Breed {result?.Name} found" : $"Breed search for: {IdOrName} not found";
                 logger.LogInformation((int)LogLevel.Information, $"{msg};{stopWatch.ElapsedMilliseconds}");
-                if (env.IsDevelopment())
-                    logger.LogDebug((int)LogLevel.Debug, $"{msg};{stopWatch.ElapsedMilliseconds}");
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                logger.LogError((int)LogLevel.Error, $"Erro ao buscar raça por {IdOrName}: {ex.Message}");
+                logger.LogError((int)LogLevel.Error, $"Fail to get breed {IdOrName}: {ex.Message}");
                 return BadRequest();
             }
         }
 
+        /// <summary>
+        /// Endpoint to get a specific Breed using temperament
+        /// </summary>
+        /// <param name="temperament"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("getbreedsbytemperament")]
         public async Task<IActionResult> GetBreedsByTemperament(string temperament)
@@ -119,10 +130,8 @@ namespace TheCatWebApi.Controllers
                 stopWatch.Start();
                 var result = await breedsRepository.GetBreedsByTemperament(temperament, true);
                 stopWatch.Stop();
-                var msg = result != null ? $"Encontrados {result.Count} raça(s) para temperamento {temperament}" : $"Raças pesquisadas por temperamento: {temperament} não encontradas";
+                var msg = result != null ? $"Find a total of {result.Count} breeds for temperament {temperament}" : $"Breeds searched for temperament: {temperament} not found";
                 logger.LogInformation((int)LogLevel.Information, $"{msg};{stopWatch.ElapsedMilliseconds}");
-                if (env.IsDevelopment())
-                    logger.LogDebug((int)LogLevel.Debug, $"{msg};{stopWatch.ElapsedMilliseconds}");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -132,6 +141,11 @@ namespace TheCatWebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint to get a specific image using a category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("getimageurlbycategory")]
         public async Task<IActionResult> getimageurlbycategory(int category)
@@ -142,10 +156,8 @@ namespace TheCatWebApi.Controllers
                 stopWatch.Start();
                 var result = await imageUrlRepositories.GetImageUrlByCategory(category);
                 stopWatch.Stop();
-                var msg = result != null ? $"Encontrados {result.Count} raça(s) para temperamento {category}" : $"Raças pesquisadas por temperamento: {category} não encontradas";
+                var msg = result != null ? $"Finds {result.Count} breeds for {category}" : $"Breeds for category: {category} not found";
                 logger.LogInformation((int)LogLevel.Information, $"{msg};{stopWatch.ElapsedMilliseconds}");
-                if (env.IsDevelopment())
-                    logger.LogDebug((int)LogLevel.Debug, $"{msg};{stopWatch.ElapsedMilliseconds}");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -155,6 +167,11 @@ namespace TheCatWebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint to get a specific image using a origin
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("getbreedsbyorigin")]
         public async Task<IActionResult> GetBreedsByOrigin(string origin)
@@ -165,10 +182,8 @@ namespace TheCatWebApi.Controllers
                 stopWatch.Start();
                 var result = await breedsRepository.GetBreedsByOrigin(origin, true);
                 stopWatch.Stop();
-                var msg = result != null ? $"Encontrados {result.Count} raça(s) para origem {origin}" : $"Raças pesquisadas por origem: {origin} não encontradas";
+                var msg = result != null ? $"Find a total of {result.Count} breeds for origin {origin}" : $"Breeds searched for origin: {origin} not found"; 
                 logger.LogInformation((int)LogLevel.Information, $"{msg};{stopWatch.ElapsedMilliseconds}");
-                if (env.IsDevelopment())
-                    logger.LogDebug((int)LogLevel.Debug, $"{msg};{stopWatch.ElapsedMilliseconds}");
                 return Ok(result);
             }
             catch (Exception ex)
