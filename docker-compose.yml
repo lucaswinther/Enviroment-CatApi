@@ -57,33 +57,6 @@ services:
             network_cats:
                 ipv4_address: 172.28.1.4
 
-  metricbeat:
-    container_name: metricbeat
-    image: metricbeat
-    restart: always
-    build:
-      context: .
-      dockerfile: monitoring/dockerfile
-    user: root
-    volumes:
-      - /proc:/hostfs/proc:ro
-      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
-      - /:/hostfs:ro
-      - /var/run/docker.sock:/var/run/docker.sock
-      - metricbeat:/usr/share/metricbeat/data
-    environment:
-      - ELASTICSEARCH_HOST=elasticsearch:9200
-      - KIBANA_HOST=kibana:5601
-    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
-    networks:
-            network_cats:
-                ipv4_address: 172.28.1.5
-    depends_on:
-      - database
-      - elasticsearch
-      - kibana      
-      - apmserver
-
   database:
     container_name: sqlserver
     image: sqlserver
