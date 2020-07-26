@@ -1,4 +1,7 @@
-# Enviroment-CatApi
+# Environment-CatApi
+
+![gif](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/environment_architecture.png)
+
 
 ## Application
 This application is utilized to get data from https://thecatapi.com/.
@@ -21,7 +24,7 @@ This application is utilized to get data from https://thecatapi.com/.
 
 4º - Run ```docker-compose up```
 
-When you run docker-compose up, all the enviroment will be created.
+When you run docker-compose up, all the Environment will be created.
 
 * Cat Web Api
 * Elastic Search
