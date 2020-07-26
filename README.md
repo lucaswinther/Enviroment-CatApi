@@ -1,7 +1,7 @@
 # Enviroment-CatApi
 
-## Aplication
-This aplication is utilized to get data from https://thecatapi.com/.
+## Application
+This application is utilized to get data from https://thecatapi.com/.
 
 ## Requirements
 
