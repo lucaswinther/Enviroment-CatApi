@@ -88,19 +88,19 @@ You can use the Postman to testing the endpoints
 ![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/Postman2.png)
 
 
-## Metrics
+## Observability
 Using Elastic APM and Kibana, you can see logs of aplication and metrics about response time and errors
+[Check dashboard](http://localhost:5601/app/apm#/services/TheCatWebApi/transactions?rangeFrom=now-15m&rangeTo=now&refreshInterval=0&refreshPaused=true&transactionType=request)
 
-### http://localhost:5601/app/apm 
 
 ![Image](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiMonitoring.png)
 
-And you can se informations about use of CPU and memory
+And you can se informations about use of CPU and memory [here](http://localhost:5601/app/apm#/services/TheCatWebApi/metrics?rangeFrom=now-15m&rangeTo=now&refreshPaused=true&refreshInterval=0)
 
 ![Postman](https://github.com/lucaswinther/Enviroment-CatApi/blob/master/images/ApiMonitoring2.png)
 
 
-## Logs
+## Application Logs
 Automaticly, the aplication will creade an index in ElasticSearch.
 You can check then using discover tab in Kibana.
 
